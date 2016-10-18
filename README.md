@@ -1,3 +1,7 @@
+The project is built with the API version 2 and is no more compatible with the current version of Habitica. I will update the project later this year.
+
+Sorry for the incovenient.
+
 # Taskwarrior Habitica Hook
 Add todo task on Habiti.com when task add is fired and complete it on task done
 
