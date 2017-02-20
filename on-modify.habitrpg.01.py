@@ -5,7 +5,7 @@ import json
 import requests
 import datetime
 
-URL = 'https://habitica.com/api/v2'
+URL = 'https://habitica.com/api/v3'
 API_KEY = ''
 API_USER = ''
 
@@ -31,7 +31,7 @@ def main():
 	print "Task completed on Habitica"
 
 def pushTask( jsonTask ):
-	req = requests.post(URL + '/user/tasks/' + jsonTask["id_habitica"] + '/up', headers=headers)
+	req = requests.post(URL + '/tasks/users/' + jsonTask["id_habitica"] + '/up', headers=headers)
 	jsonHabiticaTask = json.loads(req.text)
 	
 main()
