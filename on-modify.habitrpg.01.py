@@ -27,7 +27,7 @@ def main():
 	pushTask(jsonTask)
 	
 	print(json.dumps(jsonTask))
-	
+		
 	print "Task completed on Habitica"
 
 def pushTask( jsonTask ):

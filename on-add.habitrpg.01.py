@@ -32,7 +32,7 @@ def pushTask( jsonTask ):
 		"notes" : "Created from Taskwarrior"
 		}
 		
-	req = requests.post(URL + '/tasks/users', data=json.dumps(values), headers=headers)
+	req = requests.post(URL + '/tasks/user', data=json.dumps(values), headers=headers)
 	
 	jsonHabiticaTask = json.loads(req.text)
 	value = '';
