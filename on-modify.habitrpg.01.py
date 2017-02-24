@@ -3,7 +3,7 @@
 import sys
 import json
 import requests
-import datetime
+import copy
 
 URL = 'https://habitica.com/api/v3'
 API_KEY = ''
@@ -18,22 +18,24 @@ headers = {
 def main():
 	jsonTaskOriginal = json.loads(sys.stdin.readline())
 	jsonTask = json.loads(sys.stdin.readline())
-	print json.dumps(jsonTask,sort_keys=True,indent=4, separators=(',', ': '))
+			
 	if jsonTask["id_habitica"] is 'null' or not jsonTask["status"] == "completed":
 		print json.dumps(jsonTask)
 		print "No task updated on Habitica"
 		return
 		
-	pushTask(jsonTask)
+	jsonOutput = copy.deepcopy(jsonTask)	
+	
+	pushTask(jsonOutput)
 	
 	print(json.dumps(jsonTask))
 		
 	print "Task completed on Habitica"
 
-def pushTask( jsonTask ):
-	req = requests.post(URL + '/tasks/users/' + jsonTask["id_habitica"] + '/up', headers=headers)
+def pushTask( jsonOutput ):
+	req = requests.post(URL + '/tasks/' + jsonOutput["id_habitica"] + '/score/up', headers=headers)
+		
 	jsonHabiticaTask = json.loads(req.text)
 	
 main()
 sys.exit(0)
-	
