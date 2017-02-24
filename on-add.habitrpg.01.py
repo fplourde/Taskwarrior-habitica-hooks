@@ -4,7 +4,7 @@ import sys
 import json
 import requests
 
-URL = 'https://habitica.com/api/v2'
+URL = 'https://habitica.com/api/v3'
 API_KEY = ''
 API_USER = ''
 
@@ -32,7 +32,7 @@ def pushTask( jsonTask ):
 		"notes" : "Created from Taskwarrior"
 		}
 		
-	req = requests.post(URL + '/user/tasks', data=json.dumps(values), headers=headers)
+	req = requests.post(URL + '/tasks/user', data=json.dumps(values), headers=headers)
 	
 	jsonHabiticaTask = json.loads(req.text)
 	value = '';
@@ -41,7 +41,7 @@ def pushTask( jsonTask ):
 		print "Error while pushing task to Habitica : " + vError 
 	except:	
 		try:
-			value = jsonHabiticaTask["id"]
+			value = jsonHabiticaTask["data"]["id"]
 		except:
 			value = ""
 	

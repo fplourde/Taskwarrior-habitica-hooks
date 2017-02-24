@@ -1,18 +1,24 @@
-The project is built with the API version 2 and is no more compatible with the current version of Habitica. I will update the project later this year.
-
-Sorry for the incovenient.
-
 # Taskwarrior Habitica Hook
-Add todo task on Habiti.com when task add is fired and complete it on task done
+Add todo task on Habitica.com when task are added and complete task added with taskwarrior
+
+## What it does
+- Add task through Taskwarrior in Habitica
+- Update task added through Taskwarrior in Habitica
+
+## What it does not does
+- Add task in Taskwarrior added through Habitica
+
 
 ## Install
-Download files
+Download and unzip files
 
-	wget ...
+	wget https://github.com/fplourde/Taskwarrior-habitica-hooks/archive/master.zip
+	unzip master.zip -d .
 
 Copy files to ~/.task/hooks
 
 	mkdir -p ~/.task/hooks
+	cd Taskwarrior-habitica-hooks-master/
 	cp on-add.habitrpg.01.py ~/.task/hooks
 	cp on-modify.habitrpg.01.py ~/.task/hooks
 
@@ -25,7 +31,7 @@ Get your API Key and User Key on [https://habitica.com/#/options/settings/api](h
 	Nothing specific, task add and task done edit Habitica.
 
 ## Un-install
-Delete the hook::
+Delete the hooks
 
     rm ~/.task/hooks/on-add.habitrpg.01.py ~/.task/hooks
     rm ~/.task/hooks/on-modify.habitrpg.01.py ~/.task/hooks
