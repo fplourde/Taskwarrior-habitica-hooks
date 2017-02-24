@@ -1,5 +1,5 @@
 # Taskwarrior Habitica Hook
-Add todo task on Habitica.com when task are added and complete task added with taskwarrior
+Add todo task on Habitica.com when task are added and complete task on Habitica.com when task added with taskwarrior are completed
 
 ## What it does
 - Add task through Taskwarrior in Habitica
@@ -28,7 +28,7 @@ Get your API Key and User Key on [https://habitica.com/#/options/settings/api](h
 	API_USER = 'YOURAPIUSERKEY'
 
 ## Usage
-	Nothing specific, task add and task done edit Habitica.
+	Nothing specific, use command `task add` and `task done` edit Habitica.
 
 ## Un-install
 Delete the hooks
