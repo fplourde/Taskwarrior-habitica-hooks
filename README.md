@@ -5,7 +5,7 @@ Add todo task on Habitica.com when task are added and complete task on Habitica.
 - Add task through Taskwarrior in Habitica
 - Update task added through Taskwarrior in Habitica
 
-## What it does not does
+## What it does not do
 - Add task in Taskwarrior added through Habitica
 
 
