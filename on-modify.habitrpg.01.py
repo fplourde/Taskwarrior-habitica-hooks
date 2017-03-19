@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import sys
 import json
@@ -19,7 +19,7 @@ def main():
 	jsonTaskOriginal = json.loads(sys.stdin.readline())
 	jsonTask = json.loads(sys.stdin.readline())
 			
-	if jsonTask["id_habitica"] is 'null' or not jsonTask["status"] == "completed":
+	if 'id_habitica' not in jsonTask or not jsonTask["status"] == "completed":
 		print json.dumps(jsonTask)
 		print "No task updated on Habitica"
 		return
