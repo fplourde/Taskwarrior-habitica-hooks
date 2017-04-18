@@ -27,11 +27,11 @@ def main():
 	jsonOutput = copy.deepcopy(jsonTask)
 
 	if pushTask(jsonOutput):
-		print(json.dumps(jsonTask))
 		print "Task completed on Habitica"
 	else:
-		print(json.dumps(jsonTaskOriginal))
 		print "Task was not completed on Habitica"
+
+	print json.dumps(jsonTask)
 
 def pushTask( jsonOutput ):
 	try:
