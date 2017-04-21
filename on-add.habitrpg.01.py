@@ -20,10 +20,11 @@ def main():
 	id = pushTask(jsonTask)
 	if not id == "":
 		jsonTask["id_habitica"] = id
+		print "Task added on Habitica"
+	else:
+		print "Task was not added on Habitica"
 
 	print(json.dumps(jsonTask))
-
-	print "Task added on Habitica"
 
 def pushTask( jsonTask ):
 	values = {
@@ -35,10 +36,15 @@ def pushTask( jsonTask ):
 	if 'due' in jsonTask:
 		values["date"] = jsonTask["due"]
 
-	req = requests.post(URL + '/tasks/user', data=json.dumps(values), headers=headers)
+	try:
+		req = requests.post(URL + '/tasks/user', data=json.dumps(values), headers=headers, timeout=10)
+		jsonHabiticaTask = json.loads(req.text)
+		value = '';
+	except requests.ConnectTimeout:
+		print "Timeout while communicating with Habitica server!"
+	except requests.ConnectionError:
+		print "Connection error while communicating with Habitica server!"
 
-	jsonHabiticaTask = json.loads(req.text)
-	value = '';
 	try:
 		vError = jsonHabiticaTask["err"]
 		print "Error while pushing task to Habitica : " + vError

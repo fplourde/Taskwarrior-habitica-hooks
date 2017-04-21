@@ -18,24 +18,32 @@ headers = {
 def main():
 	jsonTaskOriginal = json.loads(sys.stdin.readline())
 	jsonTask = json.loads(sys.stdin.readline())
-			
+
 	if 'id_habitica' not in jsonTask or not jsonTask["status"] == "completed":
 		print json.dumps(jsonTask)
 		print "No task updated on Habitica"
 		return
-		
-	jsonOutput = copy.deepcopy(jsonTask)	
-	
-	pushTask(jsonOutput)
-	
-	print(json.dumps(jsonTask))
-		
-	print "Task completed on Habitica"
+
+	jsonOutput = copy.deepcopy(jsonTask)
+
+	if pushTask(jsonOutput):
+		print "Task completed on Habitica"
+	else:
+		print "Task was not completed on Habitica"
+
+	print json.dumps(jsonTask)
 
 def pushTask( jsonOutput ):
-	req = requests.post(URL + '/tasks/' + jsonOutput["id_habitica"] + '/score/up', headers=headers)
-		
-	jsonHabiticaTask = json.loads(req.text)
-	
+	try:
+		req = requests.post(URL + '/tasks/' + jsonOutput["id_habitica"] + '/score/up', headers=headers, timeout=10)
+		jsonHabiticaTask = json.loads(req.text)
+		return 1
+	except requests.ConnectTimeout:
+		print "Timeout while communicating with Habitica server!"
+		return 0
+	except requests.ConnectionError:
+		print "Connection error while communicating with Habitica server!"
+		return 0
+
 main()
 sys.exit(0)
