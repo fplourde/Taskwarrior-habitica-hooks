@@ -22,7 +22,7 @@ Copy files to ~/.task/hooks
 	cp on-add.habitrpg.01.py ~/.task/hooks
 	cp on-modify.habitrpg.01.py ~/.task/hooks
 
-Get your API Key and User Key on [https://habitica.com/#/options/settings/api](https://habitica.com/#/options/settings/api) and edit line 8 and 9 of both files. 	
+Get your API Key and User Key on [https://habitica.com/user/settings/api](https://habitica.com/user/settings/api) and edit line 8 and 9 of both files. 	
 
 	API_KEY = 'YOURAPIKEY'
 	API_USER = 'YOURAPIUSERKEY'
