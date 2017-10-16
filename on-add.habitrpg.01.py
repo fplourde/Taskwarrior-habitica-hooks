@@ -33,8 +33,18 @@ def pushTask( jsonTask ):
 		"notes" : "Created from Taskwarrior"
 		}
 
+	priorityMap = {
+		"trivial": .1,
+		"easy": 1,
+		"medium": 1.5,
+		"hard": 2
+	}
+
 	if 'due' in jsonTask:
 		values["date"] = jsonTask["due"]
+
+	if 'difficulty' in jsonTask and jsonTask["difficulty"] in priorityMap:
+		values["difficulty"] = priorityMap[jsonTask["difficulty"]]
 
 	try:
 		req = requests.post(URL + '/tasks/user', data=json.dumps(values), headers=headers, timeout=10)
