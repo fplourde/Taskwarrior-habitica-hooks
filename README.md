@@ -8,11 +8,17 @@ Add todo task on Habitica.com when task are added and complete task on Habitica.
 ## What it does not do
 - Add task in Taskwarrior added through Habitica
 
+## Install taskw
+This updated version of the hooks require the taskw [https://github.com/ralphbean/taskw](https://github.com/ralphbean/taskw) python package. It can be installed with pip:
+      pip install taskw
 
-## Install
+Or using your system package manager. For example, on Ubuntu (and Ubuntu-ish) Linux:
+      sudo apt install python-taskw
+
+## Install these hooks
 Download and unzip files
 
-	wget https://github.com/fplourde/Taskwarrior-habitica-hooks/archive/master.zip
+	wget https://github.com/ksonney/Taskwarrior-habitica-hooks/archive/master.zip
 	unzip master.zip -d .
 
 Copy files to ~/.task/hooks
@@ -22,10 +28,10 @@ Copy files to ~/.task/hooks
 	cp on-add.habitrpg.01.py ~/.task/hooks
 	cp on-modify.habitrpg.01.py ~/.task/hooks
 
-Get your API Key and User Key on [https://habitica.com/user/settings/api](https://habitica.com/user/settings/api) and edit line 8 and 9 of both files. 	
+Get your API Key and User Key on [https://habitica.com/user/settings/api](https://habitica.com/user/settings/api) and add them to your taskwarrior config file (usually ~/.taskrc)
 
-	API_KEY = 'YOURAPIKEY'
-	API_USER = 'YOURAPIUSERKEY'
+	habitica.api_key = 'YOURAPIKEY'
+	habitica.api_user = 'YOURAPIUSERKEY'
 
 ## Usage
 	Nothing specific, use command `task add` and `task done` edit Habitica.

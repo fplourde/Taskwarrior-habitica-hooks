@@ -4,10 +4,24 @@ import sys
 import json
 import requests
 import copy
+from taskw import TaskWarrior
 
 URL = 'https://habitica.com/api/v3'
-API_KEY = ''
-API_USER = ''
+
+if len(sys.argv) == 1:
+    print "The Habitica hook does not work with TaskWarrior API v1, please upgrade to Taskwarrior 2.4.3 or higher"
+    sys.exit(0)
+
+if not sys.argv[1] == "api:2":
+    print "The Habitica hook only supports TaskWarrior API v2 at this time"
+    sys.exit(0)
+
+configarg = sys.argv[4]
+configfile = configarg[3:]
+w = TaskWarrior(config_filename=configfile)
+config = w.load_config()
+API_KEY = config['habitica']['api_key']
+API_USER = config['habitica']['api_user']
 
 headers = {
 		'Content-Type' : 'application/json',
