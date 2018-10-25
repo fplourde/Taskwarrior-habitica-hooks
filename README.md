@@ -1,4 +1,4 @@
-# Taskwarrior Habitica Hook
+f# Taskwarrior Habitica Hook
 Add todo task on Habitica.com when task are added and complete task on Habitica.com when task added with taskwarrior are completed
 
 ## What it does
@@ -18,7 +18,7 @@ Or using your system package manager. For example, on Ubuntu (and Ubuntu-ish) Li
 ## Install these hooks
 Download and unzip files
 
-	wget https://github.com/ksonney/Taskwarrior-habitica-hooks/archive/master.zip
+	wget https://github.com/fplourde/Taskwarrior-habitica-hooks/archive/master.zip
 	unzip master.zip -d .
 
 Copy files to ~/.task/hooks
