@@ -31,7 +31,7 @@ headers = {
 
 
 def main():
-    jsonTaskOriginal = json.loads(sys.stdin.readline())
+    # jsonTaskOriginal = json.loads(sys.stdin.readline())
     jsonTask = json.loads(sys.stdin.readline())
 
     if 'id_habitica' not in jsonTask or not jsonTask["status"] == "completed":
@@ -51,8 +51,10 @@ def main():
 
 def pushTask(jsonOutput):
     try:
-        req = requests.post(URL + '/tasks/' + jsonOutput["id_habitica"] + '/score/up', headers=headers, timeout=10)
-        jsonHabiticaTask = json.loads(req.text)
+        # originally req = ...
+        requests.post(URL + '/tasks/' + jsonOutput["id_habitica"] +
+                            '/score/up', headers=headers, timeout=10)
+        # jsonHabiticaTask = json.loads(req.text)
         return 1
     except requests.ConnectTimeout:
         print("Timeout while communicating with Habitica server!")

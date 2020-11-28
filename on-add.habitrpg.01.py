@@ -3,7 +3,6 @@
 import sys
 import json
 import requests
-import argparse
 from taskw import TaskWarrior
 
 URL = 'https://habitica.com/api/v3'
@@ -43,11 +42,11 @@ def main():
     print(json.dumps(jsonTask))
 
 
-def pushTask( jsonTask ):
+def pushTask(jsonTask):
     values = {
-        "type" : "todo",
-        "text" : jsonTask["description"],
-        "notes" : "Created from Taskwarrior"
+        "type": "todo",
+        "text": jsonTask["description"],
+        "notes": "Created from Taskwarrior"
     }
 
     priorityMap = {
@@ -64,9 +63,10 @@ def pushTask( jsonTask ):
         values["difficulty"] = priorityMap[jsonTask["difficulty"]]
 
     try:
-        req = requests.post(URL + '/tasks/user', data=json.dumps(values), headers=headers, timeout=10)
+        req = requests.post(URL + '/tasks/user', data=json.dumps(values),
+                            headers=headers, timeout=10)
         jsonHabiticaTask = json.loads(req.text)
-        value = '';
+        value = ''
     except requests.ConnectTimeout:
         print("Timeout while communicating with Habitica server!")
     except requests.ConnectionError:
