@@ -1,4 +1,4 @@
-f# Taskwarrior Habitica Hook
+# Taskwarrior Habitica Hook
 Add todo task on Habitica.com when task are added and complete task on Habitica.com when task added with taskwarrior are completed
 
 ## What it does
@@ -18,13 +18,13 @@ Or using your system package manager. For example, on Ubuntu (and Ubuntu-ish) Li
 ## Install these hooks
 Download and unzip files
 
-	wget https://github.com/fplourde/Taskwarrior-habitica-hooks/archive/master.zip
+	wget https://git.shadow53.com/Shadow53/taskwarrior-habitica-hooks/archive/master.zip
 	unzip master.zip -d .
 
 Copy files to ~/.task/hooks
 
 	mkdir -p ~/.task/hooks
-	cd Taskwarrior-habitica-hooks-master/
+	cd taskwarrior-habitica-hooks-master/
 	cp on-add.habitrpg.01.py ~/.task/hooks
 	cp on-modify.habitrpg.01.py ~/.task/hooks
 
