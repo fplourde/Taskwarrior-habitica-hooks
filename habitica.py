@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from datetime import datetime
 import sys
 import json
 import requests
@@ -52,10 +53,10 @@ headers = {
 }
 
 priorityMap = {
-    "trivial": .1,
-    "easy": 1,
-    "medium": 1.5,
-    "hard": 2
+    "trivial": "0.1",
+    "easy": "1",
+    "medium": "1.5",
+    "hard": "2"
 }
 
 
@@ -91,7 +92,8 @@ def pushTask(task):
 
     # If task has due date, add to Habitica request
     if TASK_KEY_DUE in task:
-        values[HABITICA_DATE] = task[TASK_KEY_DUE]
+        values[HABITICA_DATE] = datetime.strptime(task[TASK_KEY_DUE],
+                                                  "%Y%m%dT%H%M%SZ").isoformat()
 
     # If task has difficulty, map to Habitica difficulty
     if TASK_KEY_DIFFICULTY in task and task[TASK_KEY_DIFFICULTY] in priorityMap:
@@ -100,11 +102,16 @@ def pushTask(task):
     try:
         req = requests.post(URL + '/tasks/user', data=json.dumps(values),
                             headers=headers, timeout=10)
-        todo = json.loads(req.text)
-        if HABITICA_ERROR in todo:
-            error = todo[HABITICA_ERROR]
+        todo = req.json()
+        if req.status_code >= 400:
+            error = "Received HTTP error {} from Habitica API: {}".format(req.status_code, req.text)
+            if HABITICA_ERROR in todo:
+                error = todo[HABITICA_ERROR]
             raise TaskException(habitica_error=error)
-        elif HABITICA_DATA not in todo or HABITICA_ID not in todo[HABITICA_DATA]:
+        elif HABITICA_DATA not in todo:
+            error = "Data object not found in Habitica response"
+            raise TaskException(habitica_error=error)
+        elif HABITICA_ID not in todo[HABITICA_DATA]:
             error = "Task ID not found in Habitica response"
             raise TaskException(habitica_error=error)
         else:
