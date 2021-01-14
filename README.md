@@ -1,4 +1,4 @@
-f# Taskwarrior Habitica Hook
+# Taskwarrior Habitica Hook
 Add todo task on Habitica.com when task are added and complete task on Habitica.com when task added with taskwarrior are completed
 
 ## What it does
@@ -18,15 +18,15 @@ Or using your system package manager. For example, on Ubuntu (and Ubuntu-ish) Li
 ## Install these hooks
 Download and unzip files
 
-	wget https://github.com/fplourde/Taskwarrior-habitica-hooks/archive/master.zip
+	wget https://git.shadow53.com/Shadow53/taskwarrior-habitica-hooks/archive/master.zip
 	unzip master.zip -d .
 
 Copy files to ~/.task/hooks
 
 	mkdir -p ~/.task/hooks
-	cd Taskwarrior-habitica-hooks-master/
-	cp on-add.habitrpg.01.py ~/.task/hooks
-	cp on-modify.habitrpg.01.py ~/.task/hooks
+	cp -r taskwarrior-habitica-hooks-master ~/.task/hooks/habitica
+	ln -sf ~/.task/hooks/habitica/habitica.py ~/.task/hooks/on-add.05.habitica.py
+	ln -sf ~/.task/hooks/habitica/habitica.py ~/.task/hooks/on-modify.05.habitica.py
 
 Get your API Key and User Key on [https://habitica.com/user/settings/api](https://habitica.com/user/settings/api) and add them to your taskwarrior config file (usually ~/.taskrc)
 
@@ -39,5 +39,4 @@ Get your API Key and User Key on [https://habitica.com/user/settings/api](https:
 ## Un-install
 Delete the hooks
 
-    rm ~/.task/hooks/on-add.habitrpg.01.py ~/.task/hooks
-    rm ~/.task/hooks/on-modify.habitrpg.01.py ~/.task/hooks
+    rm ~/.task/hooks/on-add.05.habitrpg.py ~/.task/hooks/on-modify.05.habitrpg.py ~/.task/hooks/habitica
